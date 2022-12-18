@@ -1,0 +1,217 @@
+\documentclass[10pt,letterpaper,sans]{moderncv}
+
+\usepackage{natbib}
+\usepackage{bibentry,xr}
+\usepackage[left=0.25in, right=0.375in, top=0.375in, bottom=0.5in]{geometry}
+
+\usepackage{lastpage}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{libertine}
+\usepackage[symbol]{footmisc}
+\moderncvstyle{classic}
+\moderncvcolor{blue}
+\providecommand{\NOOP}[1]{}
+\setlength{\hintscolumnwidth}{0.08\textwidth}
+
+\newcounter{gitref}
+\renewcommand{\thegitref}{[\alph{gitref}]}
+\newcommand{\gitcount}{ \refstepcounter{gitref} \thegitref}
+
+	
+\linespread{0.95}
+
+\pagestyle{fancy}
+\rfoot{\thepage\ of \pageref{LastPage}}
+
+%DOI link
+\newcommand*{\doi}[1]{\href{http://dx.doi.org/#1}{doi: #1}}
+
+
+%Multicolumn
+\usepackage{multicol}
+%\setlength{\hintscolumnwidth}{2cm}
+%\setlength{\separatorcolumnwidth}{1em}
+
+%% Relevant lengths
+%\setlength{\hintscolumnwidth}{0.175\textwidth}
+%\setlength{\separatorcolumnwidth}{0.025\textwidth}
+%\setlength{\maincolumnwidth}{\textwidth-\leftskip-\rightskip-\separatorcolumnwidth-\hintscolumnwidth}
+%
+%% Definition
+%\renewcommand*{\cvitem}[3][.25em]{%
+%  \begin{tabular}{@{}p{\hintscolumnwidth}@{\hspace{\separatorcolumnwidth}}p{\maincolumnwidth}@{}}%
+%    \raggedleft\hintstyle{#2} &{#3}%
+%  \end{tabular}%
+%  \par\addvspace{#1}}
+
+
+
+
+
+\renewcommand*{\cvitem}[3][6pt]{%
+	\begin{tabular}{@{}p{\hintscolumnwidth}@{\hspace{\separatorcolumnwidth}}p{\maincolumnwidth}@{}}%
+		\raggedleft\hintstyle{#2} &{#3}%
+	\end{tabular}%
+	\par\addvspace{#1}}
+
+\renewcommand*{\cventry}[7][0pt]{%
+	\cvitem[#1]{#2}{%
+		{\bfseries#3}%
+		\ifthenelse{\equal{#4}{}}{}{, {\slshape#4}}%
+		\ifthenelse{\equal{#5}{}}{}{, #5}%
+		\ifthenelse{\equal{#6}{}}{}{, #6}%
+		\strut%
+		\ifx&#7&%
+		\else{\newline{}\begin{minipage}[t]{\linewidth}\small#7\end{minipage}}\fi}}
+
+\renewcommand*{\cvitemwithcomment}[4][0pt]{%
+	\savebox{\cvitemwithcommentbox}{{#3}}%
+	\setlength{\cvitemwithcommentskilllength}{\widthof{\usebox{\cvitemwithcommentbox}}}%
+	\setlength{\cvitemwithcommentcommentlength}{\maincolumnwidth-\separatorcolumnwidth-\cvitemwithcommentskilllength}%
+	\cvitem[#1]{#2}{%
+		\begin{minipage}[t]{\cvitemwithcommentskilllength}\usebox{\cvitemwithcommentbox}\end{minipage}%
+		\hfill% fill of \separatorcolumnwidth
+		\begin{minipage}[t]{\cvitemwithcommentcommentlength}\raggedleft\small\itshape#4\end{minipage}}}
+
+\renewcommand*{\cvlistitem}[2][6pt]{%
+	\cvitem[#1]{}{\listitemsymbol\begin{minipage}[t]{\listitemcolumnwidth}#2\end{minipage}}}
+
+
+\renewcommand*{\namefont}{\fontsize{26}{32}\mdseries\upshape}
+
+
+\makeatletter
+\@ifpackageloaded{moderncvstyleclassic}{%
+	\let\oldsection\section%
+	\renewcommand{\section}[1]{\leavevmode\unskip\vspace*{-\baselineskip}\oldsection{#1}}%
+}{%
+}
+\makeatother
+
+\newcounter{refcounter}
+\newcommand{\refno}[1]{\refstepcounter{refcounter} [\therefcounter]\label{#1}}
+%\newcommand{\refno}[1]{}
+
+%CONTACT
+%\firstname{Nicholas}
+%\familyname{Fournier, PhD}
+\name{Nicholas}{Fournier, PhD}
+%\address{University of California, Berkeley}{}{}
+%\mobile{774-236-0293} % Phone number
+\email{nick.fournier@berkeley.edu} % Email ID
+\social[github][https://github.com/nick-fournier]{github.com/nick-fournier/}
+\social[linkedin][www.linkedin.com/in/nicholas-fournier/]{www.linkedin.com/in/nicholas-fournier/}
+
+
+\usepackage{etoolbox}
+
+\patchcmd{\makecvhead}{{minipage}[b]}{{minipage}[t]}{}{}
+
+\newsavebox{\mytempbox}
+\newlength{\mytitleoffset}
+\savebox{\mytempbox}{\addressfont S}
+\setlength{\mytitleoffset}{\ht\mytempbox}
+
+\patchcmd{\makecvhead}{\raggedleft\fi}{\raggedleft\fi\vspace{-\mytitleoffset}}{}{}
+\patchcmd{\makecvhead}{{tabular}[b]}{{tabular}[t]}{}{}
+
+
+
+\begin{document}
+	\nobibliography{../mybib}
+	\bibliographystyle{plainnat_abbrev.bst}
+	
+   	\makecvtitle
+   	   	
+%	\footnotetext{* Numbered and lettered citations refer to relevant publications and GitHub repositories.}
+
+	\vspace{-32pt}   	
+	
+	
+%   	\section{OBJECTIVE}
+%   	Accomplished researcher seeking to leverage my advanced statistical and analytical skills into a data science career. My hybrid background in engineering (transportation) and social science (urban planning) allows me to move easily between quantitative and qualitative perspectives. I am passionate about learning how human and engineered systems intersect throughout society and how they might be improved.
+   	
+
+   	\subsection{RESEARCH EXPERIENCE -- SELECT PROJECTS}
+   	\cventry[1pt]{2020-~~~~~~}{University of California Berkeley}{Postdoctoral Scholar\hrule}{}{}{}
+   	\cvitem[-14pt]{}{}
+
+  	\cvlistitem{\textit{\bfseries Exploring the operational and equity benefits of a pre-pay dynamic tolling system [lead researcher]:} \textit{R}-based analytical simulation exploring optimal revenue and traffic flow in dynamic toll price ``futures'' market to enhance price-demand elasticity. Utilized Kernel Density Estimation to smooth traffic flow data for forecasting and pricing models. Funded by California State SB1.}
+   	
+  	\cvlistitem{\textit{\bfseries Bicycle network connectivity evaluation methodology [lead researcher]:} Bicycle network connectivity performance measure using graph theory and user preference criteria (e.g., route choice models). Intended deployment as Python tool for GIS. Funded by Caltrans.}
+  		
+	\cvlistitem{\textit{\bfseries Erroneous High Occupancy Vehicle (HOV) Degradation:} Python program to detect operational but mislabeled traffic sensors using machine learning (e.g., k-Nearest Neighbor, Logistic Regression, Random Forest, Support Vector Machines, Local Outlier Factor, Isolation Forest, and Robust Covariance Anomaly Detection). Funded by Caltrans.}
+	
+  	\cvlistitem{\textit{\bfseries Bicycle level of service measures for the CA State Highway System:} UX research/human factors study to determine bicycle infrastructure preferences using virtual reality bicycle simulator. Estimated using a Latent Class Choice Model capable of accounting for user heterogeneity. Results to align with ``Complete Cities'' project. Funded by Caltrans.}
+   	
+%  	\cvlistitem{\textit{\bfseries Improved Analysis Methodologies and Strategies for Complete Streets:} Developed \textit{R}-based package for estimating Bicycle Level of Service using the Highway Capacity Manual's methodology with proposed improvements [\ref{bikepave}].}
+  	  	   	
+   	\cventry[1pt]{2019-2020}{Monash University, Melbourne, Australia}{Research Fellow\hrule}{}{}{}
+   	\cvitem[-14pt]{}{}
+   	\cvlistitem{\textit{\bfseries Public Transport Research Group:} Advised team of 19 doctoral students conducting industry partnered research in public transportation engineering, planning, policy analysis, and economics.}
+   	
+   	\cventry[1pt]{2014-2018}{University of Massachusetts Amherst}{Graduate Research Assistant\hrule}{}{}{}
+   	\cvitem[-14pt]{}{}
+   	\cvlistitem{\textit{\bfseries Sustainable Travel Incentives with Prediction, Optimization and Personalization:} Data fusion population synthesizer using novel combinatorial optimization algorithm in \textit{R} and C++ (demographics, OD-matrices, household/vehicle association, etc.). Mixed-methods include Bayesian Networks, Markov chain Monte Carlo simulation, iterative fitting (matrix raking), robust regression, LASSO/Ridge regularization, and gradient descent. Used as input in larger agent-based discrete choice and simulation to lower energy consumption with user incentives. Joint MIT project sponsored by ARPA-energy.}
+   		
+%	\cvitem[-14pt]{}{}
+%	\cvlistitem{\textit{\bfseries Infrastructure Strategies for Safer Cycling: An evaluation of driver behavior using a driving simulator:} USDOT sponsored UX research project using driving simulator to evaluate bicycle infrastructure based on driver behavior. Analyzed results using statistical inference techniques like ANOVA and interaction models in \textit{R} [\ref{bikesim},\ref{bikesine},\ref{bikeinfra}].}
+	
+% 	\pagebreak	
+	\subsection{ADDITIONAL WORK EXPERIENCE}
+	\cventry{2015--2017}{Volpe Transportation Center (U.S. DOT)}{Community Planner (Pathways Intern)}{Cambridge, MA}{}{}	
+	\cventry{2013--2014}{Sandis Civil Engineers, Planners, Surveyors}{Design Engineer}{Oakland, CA}{}{}
+	\cventry{2011--2013}{Benjamini and Associates, Inc.}{Assistant Engineer}{San Francisco, CA}{}{}
+
+% 	\pagebreak	
+	
+%	\vspace{-6pt} 	
+	\begin{multicols}{2}
+	\subsection{EDUCATION}
+   	\cventry{}{University of Massachusetts, Amherst}{}{}{}{}
+   	\cvitemwithcomment[0pt]{2019}{PhD Civil Engineering -- Transportation, \itshape GPA: 4.0}{}
+	\cvitemwithcomment[0pt]{2018}{MS Civil Engineering -- Transportation}{}
+	\cvitemwithcomment[0pt]{2017}{Master of Regional Planning}{}
+   	\cvitemwithcomment[0pt]{2011}{BS Civil \& Environmental Engineering}{}
+   	\cvitemwithcomment[0pt]{}{\itshape Dissertation: Equity and efficiency in multi-modal transportation systems}{}
+
+   	\vfill\null
+   	\columnbreak
+
+   	\subsection{AWARDS}
+   	\cvitemwithcomment{~}{}{}
+	\cvitemwithcomment{2018}{Eno Fellow -- Eno Future Leadership Conference}{}
+	\cvitemwithcomment{2015-2018}{Dwight D. Eisenhower Transportation Fellowship}{}
+	\cvitemwithcomment{2016-2017}{Outstanding Student of the Year}{}
+	\cvitemwithcomment{2015}{Daniel B. Fambro Student Paper Award -- ITE}{}
+	\end{multicols}
+	
+	\vspace{-12pt}
+
+{	\small
+	\subsection{SELECT PUBLICATIONS}
+	\cvitem{2021\refno{pedtransit}}{\hspace{0cm}\bibentry{Fournier2021pedtransit}.}
+	\cvitem{\refno{optequity}}{\hspace{0cm}\bibentry{Fournier2021optequity}.}
+%	\cvitem{\refno{bikepave}}{\hspace{0cm}\bibentry{Huang2021}.}
+	\cvitem{2020\refno{vot}}{\hspace{0cm}\bibentry{Fournier2020vot}}
+	\cvitem{\refno{popsynth}}{\hspace{0cm}\bibentry{Fournier2020workpop}}
+	\cvitem{\refno{bikesim}}{\hspace{0cm}\bibentry{Fournier2020bikesim}}
+%	\cvitem{\refno{astonlanduse}}{\hspace{0cm}\bibentry{Aston2020}}
+%	\cvitem{\refno{curriedrt}}{\hspace{0cm}\bibentry{Currie2020}}
+	\cvitem{2017\refno{bikesine}}{\hspace{0cm}\bibentry{Fournier2017sine}}
+%	\cvitem{\refno{bikeinfra}}{\hspace{0cm}\bibentry{Fournier2017mixed}}
+}
+	
+	
+	
+% 	\section{LEADERSHIP \& ACTIVITIES}
+% 	\cvlistitem[0pt]{Co-host of Eureka! Externships, Girls Inc., Holyoke, MA}
+% 	\cvlistitem[0pt]{Faculty hiring committee member}
+% 	\cvlistitem[0pt]{UMass Summer Transportation Institute presenter and host}
+% 	\cvlistitem[0pt]{Planning Student Organization Treasurer}
+% 	\cvlistitem[0pt]{New England Institute of Transportation Engineers Student Member}
+% 	\cvlistitem[0pt]{American Planning Association Student Member}
+% 	\cvlistitem[0pt]{San Francisco Bicycle Coalition, MassBike, League of American Bicyclists}
+
+\end{document}
